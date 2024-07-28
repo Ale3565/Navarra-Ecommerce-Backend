@@ -25,8 +25,8 @@ public class ImagesController {
     @GetMapping(path = "/photoProduct/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getPhoto(@PathVariable("id") Long id) throws Exception {
         Product p = productRepository.findById(id).orElseThrow(() -> new Exception("Producto no encontrado"));
-        String imageUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgURL();
-        return imageUrl;
+        String imgUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgUrl();
+        return imgUrl;
     }
     @PostMapping(path = "/uploadPhoto/{id}")
     public void uploadPhoto(MultipartFile file, @PathVariable Long id) throws Exception{
