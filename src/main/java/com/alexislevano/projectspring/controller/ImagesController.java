@@ -23,7 +23,7 @@ public class ImagesController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping(path = "/photoProduct/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(path = "/photoProduct/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
     public String getPhoto(@PathVariable("id") Long id) throws Exception {
         Product p = productRepository.findById(id).get();
          return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/SpringAngAssets/products/"+p.getImgURL()));
