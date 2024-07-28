@@ -42,7 +42,7 @@ public class ImagesController {
     }
 
     private byte[] loadImageFromRepo(String imageName) throws IOException {
-        String baseUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/";
+        String baseUrl = "https://raw.githubusercontent.com/Ale3565/images/main/";
         String imageUrl = baseUrl + imageName;
 
         URL url = new URL(imageUrl);
