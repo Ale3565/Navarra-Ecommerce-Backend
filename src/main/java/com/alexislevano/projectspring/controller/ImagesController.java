@@ -17,22 +17,24 @@ import com.alexislevano.projectspring.entities.Product;
 @CrossOrigin("*")
 @RestController
 public class ImagesController {
-	private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ImagesController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
+
     @GetMapping(path = "/photoProduct/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getPhoto(@PathVariable("id") Long id) throws Exception {
         Product p = productRepository.findById(id).orElseThrow(() -> new Exception("Producto no encontrado"));
-        String imgUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgUrl();
+        String imgUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgURL();
         return imgUrl;
     }
+
     @PostMapping(path = "/uploadPhoto/{id}")
-    public void uploadPhoto(MultipartFile file, @PathVariable Long id) throws Exception{
-       Product p=productRepository.findById(id).get();
-       p.setImgURL(file.getOriginalFilename());
-       Files.write(Paths.get(System.getProperty("user.home")+"/SpringAngAssets/products/"+p.getImgURL()),file.getBytes());
-       productRepository.save(p);
+    public void uploadPhoto(MultipartFile file, @PathVariable Long id) throws Exception {
+        Product p = productRepository.findById(id).get();
+        p.setImgURL(file.getOriginalFilename());
+        Files.write(Paths.get(System.getProperty("user.home") + "/SpringAngAssets/products/" + p.getImgURL()), file.getBytes());
+        productRepository.save(p);
     }
 }
