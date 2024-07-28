@@ -26,7 +26,7 @@ public class ImagesController {
     @GetMapping(path = "/photoProduct/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getPhoto(@PathVariable("id") Long id) throws Exception {
         Product p = productRepository.findById(id).orElseThrow(() -> new Exception("Producto no encontrado"));
-        String imgUrl = "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgURL();
+        String imgUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgURL();
         return imgUrl;
     }
 
