@@ -25,9 +25,8 @@ public class ImagesController {
 
     @GetMapping(path = "/photoProduct/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getPhoto(@PathVariable("id") Long id) throws Exception {
-        Product p = productRepository.findById(id).orElseThrow(() -> new Exception("Producto no encontrado"));
-        String imgUrl = "https://raw.githubusercontent.com/Ale3565/images/main/images/" + p.getImgURL();
-        return imgUrl;
+        Product p = productRepository.findById(id).get();
+         return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/SpringAngAssets/products/"+p.getImgURL()));
     }
 
     @PostMapping(path = "/uploadPhoto/{id}")
